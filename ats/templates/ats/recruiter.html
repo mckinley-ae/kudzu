@@ -1,0 +1,12 @@
+{% extends "ats/__base.html" %}
+
+{% block content_title %}
+  {{recruiter_info}}
+{% endblock %}
+
+{% block content %}
+<ul>
+    <li>{{recruiter_info.phone}}</li>
+    <li>{{recruiter_info.user.email}}</li>
+<ul>
+{% endblock %}

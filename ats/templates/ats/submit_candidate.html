@@ -1,0 +1,25 @@
+{% extends "ats/__base.html" %}
+
+{% block content %}
+
+	<h1>Submit Candidate</h1>
+	<p> search functionality here</p>
+
+	<form method="post"  enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ formset.management_form }}
+		<div class="container-fluid">
+			{% for job in formset %}
+				<div class="row">
+					<div class="col-md-1"><input type="checkbox" value={{job.id}} name='jobs'></div>
+					<div class="col-md-2">{{ job.title }}</div>
+				  <div class="col-md-2">{{ job.company }}</div>
+				  <div class="col-md-4">{{ job.pub_date }}</div>
+				  <div class="col-md-3">{{ job.tags }}</div>
+				</div>
+			{% endfor %}
+		</div>
+	<input type='submit' >
+	</form>
+
+{% endblock %}

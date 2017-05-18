@@ -1,0 +1,109 @@
+from django.http import HttpResponse
+from django.template import loader
+from djang.views import generic
+from .models import Candidate, Job
+from .forms import CandidateForm, JobForm, SubmitCandidateForm, InterviewAddForm
+from django.shortcuts import render
+import datetime
+
+#listview
+#detailview
+#createnewview
+
+class index(generic.ListView):
+	template_name = 'polls/index.html'
+	context_object_name = 'context'
+		
+	def get_queryset(self):
+		"""Return the last five published candidate + jobs ."""
+		latest_candidate_list = Candidate.objects.order_by('-pub_date')[:5]
+		latest_job_list = Job.objects.order_by('-pub_date')[:5]
+		context = { 
+					'latest_candidate_list': latest_candidate_list,
+					'latest_job_list' : latest_job_list
+		}
+		return context
+
+#(request):
+#	latest_candidate_list = Candidate.objects.order_by('-pub_date')[:5]
+#	latest_job_list = Job.objects.order_by('-pub_date')[:5]
+#	context = { 'latest_candidate_list': latest_candidate_list,
+#				'latest_job_list' : latest_job_list
+#	}
+#	return render(request, 'ats/index.html', context)
+
+class candidate_detail(generic.DetailView):
+	model = Candidate
+	template_name = 'polls/candidate_details.html'
+
+	#(request, candidate_id):
+#	if request.method == 'POST':
+#		i = InterviewAddForm(request.POST)
+#		if i.is_valid():
+#			new_interview = i.save(commit=False)
+#			new_interview.save()
+#		else:
+#			print('error saving')
+#			print(i.errors)
+#	c = Candidate.objects.get(pk=candidate_id)
+#
+#	context = {
+#		'candidate_fields': c.get_fields,
+#		'candidate_jobs' : c.jobs.all(),
+#		'interview_add_form' : InterviewAddForm
+#	}
+#	return render(request, 'ats/candidate_details.html', context )
+
+class job_detail(generic.DetailView):
+	#(request, job_id):
+	#job = Job.objects.get(pk=job_id)
+	#context = {		'candidates_on_job': job.get_candidates()	}
+	#return render(request, 'ats/job_details.html', context)
+
+class new_candidate(generic.CreateNewView):
+#(request):
+#	if request.method == 'POST':
+#		c = CandidateForm(request.POST, request.FILES)
+#		if c.is_valid():
+#			new_candidate = c.save(commit=False)
+#			new_candidate.pub_date = datetime.datetime.today()
+#			new_candidate.save()
+#		else:
+#			print('error saving')
+#			print(c.errors)
+#	context = { 'formset' : CandidateForm }
+#	return render(request, 'ats/new_candidate.html', context)
+	#template_name = 'polls/index.html'
+	#context_object_name = 'latest_question_list'
+
+class new_job(generic.CreateNewView):
+
+#(request):
+#	if request.method == 'POST':
+#		j = JobForm(request.POST)
+#		if j.is_valid():
+#			new_job = j.save(commit=False)
+#			new_job.pub_date = datetime.datetime.today()
+#			new_job.save()
+#		else:
+#			print('error saving')
+#			print(c.errors)
+#	context = { 'formset' : JobForm }
+#	return render(request, 'ats/new_job.html', context)
+
+class submit_candidate(generic.ListView):
+
+
+
+#(request, candidate_id):
+#	c = Candidate.objects.get(pk=candidate_id)
+#	#ALERT: might be messy at scale	
+#	global_jobs = Job.objects.all()
+#	if request.method == 'POST':
+#		arr = request.POST.getlist('jobs')
+#		for i in range(0,len(arr)):	
+#			for job in Job.objects.filter(pk=arr[i]):	
+#				c.jobs.add(job)
+#				print(c.jobs.all())
+#	context = { 'formset' : global_jobs }
+#	return render(request, 'ats/submit_candidate.html', context)

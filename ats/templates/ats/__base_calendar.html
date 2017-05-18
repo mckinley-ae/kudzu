@@ -1,0 +1,32 @@
+<link href="/static/ats/css/fullcalendar.css" rel="stylesheet" type="text/css" />
+<script src='/static/ats/js/moment.min.js'></script>
+
+<script type="text/javascript">
+     var calendar_events = JSON.parse('{{events|safe}}');
+     console.log(calendar_events)
+    $.getScript("/static/ats/js/fullcalendar.js", function(){
+      //var django_events = ;
+      var date = new Date();
+      var d = date.getDate();
+      var m = date.getMonth();
+      var y = date.getFullYear();
+
+      $('#calendar').fullCalendar({
+        weekends: false,
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+        },
+        editable: true,
+        events: calendar_events
+      });
+    })
+
+</script>
+
+
+<div class="container">
+    <hr>
+	<div id="calendar"></div>
+</div>

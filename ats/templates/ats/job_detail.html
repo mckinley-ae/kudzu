@@ -1,0 +1,56 @@
+{% extends "ats/__base.html" %}
+
+{% block content_title %}
+	{{summary}}
+{% endblock %}
+
+{% block content %}
+{%for tag in job_tags %}
+	<span class="label label-default tag-label">{{tag}}</span>
+{% endfor %}
+	<div name='job_details col-md-12'>
+		<table class="table table-hover">
+			{% for field in job_details %}
+				<tr>
+					<td>{{field.0}}</td>
+					<td>{{field.1}}</td>
+				</tr>
+			{% endfor %}
+			<tr>
+				<td>
+				</td>
+				<td>
+				</td>
+			<tr>
+		</table>
+		{{description}}
+	</div>
+
+	<br> <br>
+
+	<div name='candidates_in_process'>
+		<table class="table table-hover ">
+			<th>
+				<h4> Candidates in Process </h4>
+			</th>
+			{%for candidate in candidates_on_jobs %}
+			<tr>
+				<td> <a href={{candidate.url}}>{{candidate.first_name}} {{candidate.last_name}}<a><td>
+				<td>{{candidate.phone}}<td>
+				<td>
+					<table>
+						{% for interview in candidate.interviews %}
+							<tr>
+								<td>{{ interview.get_interview_type_display }}</td>
+								<td> {{ interview.date_time }} </td>
+							</tr>
+						{% endfor %}
+					</table>
+			  </td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+
+
+{% endblock %}

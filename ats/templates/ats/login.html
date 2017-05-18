@@ -1,0 +1,10 @@
+{% extends 'ats/__base.html' %}
+
+{% block title %}Login{% endblock %}
+<div class="jumbotron vertical-center ">
+  <div class="container-fluid">
+    {% block content %}
+      {% include 'ats/__base_login.html' with fields=fields %}
+    {% endblock %}
+  </div>
+</div>

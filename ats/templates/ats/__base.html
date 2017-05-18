@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        {% block meta_tags %}{% endblock %}
+        <title>
+        {% block title %}{% endblock %}
+        </title>
+        {% block stylesheets %}
+           <link href="/static/ats/css/__base.css" rel="stylesheet" type="text/css"/>
+           <link href="/static/ats/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        {% endblock %}
+        {% block javascript %}
+            <script src="/static/ats/js/jquery-3.1.1.min.js"></script>
+            <script src="/static/ats/js/bootstrap.js" type="text/javascript"></script>
+            <script src="/static/ats/js/d3.min.js" type="text/javascript"></script>
+        {% endblock %}
+        {% block extra_head %}{% endblock %}
+    </head>
+
+
+    <body>
+        <header>
+          {% include "ats/_navigation.html" %}
+        </header>
+      <div class="main-content">
+      {% if no_panel_content %}
+        {% block no_panel_content %}
+        {% endblock %}
+      {% else %}
+        <div class="panel-heading" >
+          {% block content_title %}
+          {% endblock %}
+        </div>
+          <div class="panel panel-default" >
+            <div class="panel-body">
+              {% block content %}
+              {% endblock %}
+            </div>
+            <div class="panel-body">
+              {% block content2 %}
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+    {% endif %}
+    </body>
+</html>

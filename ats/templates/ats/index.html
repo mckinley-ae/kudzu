@@ -1,0 +1,45 @@
+
+
+{% extends "ats/__base.html" %}
+
+{% block content %}
+	<!-- SHOW unscheduled list AKA interviews who have none on interview date-->
+	{% if unscheduled_list %}
+		<h4>Unscheduled Interviews</h4>
+		<ul>
+		{% for interview in unscheduled_list %}
+			<li><a href="{{interview.candidate.base_url}}{{ interview.candidate.id }}/">
+				{{ interview.candidate.first_name }} {{ interview.candidate.last_name }} </a>: {{interview.get_interview_type_display}}</li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<p>No candidates are available.</p>
+	{% endif %}
+	<br>
+
+	<!-- SHOW five most recent candidates -->
+	{% if latest_candidate_list %}
+		<h4>Candidates</h4>
+		<ul>
+		{% for candidate in latest_candidate_list %}
+			<li><a href="{{candidate.base_url}}{{ candidate.id }}">{{ candidate.first_name }} {{ candidate.last_name }} </a></li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<p>No candidates are available.</p>
+	{% endif %}
+	<br>
+
+	<!-- SHOW five most recent jobs -->
+	{% if latest_job_list %}
+		<h4>Jobs</h4>
+		<ul>
+		{% for job in latest_job_list %}
+			<li><a href="{{job.base_url}}{{ job.id }}/">{{ job.title }} {{ job.company }} </a></li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<p>No jobs are available.</p>
+	{% endif %}
+
+{% endblock %}

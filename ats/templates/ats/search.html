@@ -1,0 +1,50 @@
+{% extends "ats/__base.html" %}
+
+{% block content %}
+  <script>
+    <!-- CLICK TO TOGGLE DIFFERENT SEARCH FORMS -->
+    $(document).ready(function(){
+        $("#toggle_search").click(function(){
+            $("#candidate_search_form").toggle();
+            $("#job_search_form").toggle();
+        });
+    });
+  </script>
+    <button id='toggle_search'>toggle </button>
+
+    <div id='candidate_search_form'>
+      <h2> CANDIDATES </h2>
+      <div class="form-group">
+          {% include 'ats/__base_form.html' with form=candidate_search_form %}
+      </div>
+    </div>
+
+    <div id='job_search_form' hidden=True>
+        <h2> JOBS </h2>
+        {% csrf_token %}
+        {% include 'ats/__base_form.html' with form=job_search_form %}
+    </div>
+
+    <div name='results'>
+      {% if results %}
+      <div class="container-fluid">
+        {%for result in results %}
+        <!-- SLOPPY -->
+        <div class="row">
+          <div class="col-md-6" value={{result.pk}}>{{ job.title }}</div>
+          <div class="col-md-6">
+            {% if result.title %}
+              <a href={{result.base_url}}{{result.pk}}>{{result.title}}</a>
+            {% endif %}
+            {% if result.first_name %}
+                <a href={{result.base_url}}{{result.pk}}>{{ result.first_name }}</a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      {% else %}
+        There are no matching results
+      {% endif %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "ats/__base.html" %}
+
+{% block content_title %}
+  {{candidate_name}}
+{% endblock %}
+
+{% block content %}
+
+  <!---JQUERY TIME PICKER http://timepicker.co/-->
+  <link href="/static/ats/css/jquery.timepicker.min.css" rel="stylesheet" type="text/css"/>
+  <script>
+  $(document).ready(function(){
+      $('input#timepicker').timepicker({});
+  });
+  </script>
+  <!---JQUERY TIME PICKER http://timepicker.co/-->
+
+  <!---JQUERY DATE PICKER https://jqueryui.com/datepicker/-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+  	$( "#datepicker" ).datepicker();
+  } );
+  </script>
+  <!---END JQUERY DATE PICKER -->
+
+  {% for tag in candidate_tags %}
+    <span class="label label-default tag-label">{{tag}}</span>
+  {% endfor %}
+  <br>
+	<a href='submit'><span class="glyphicon glyphicon-arrow-right"></span></a>
+  <a href='edit'><span class="glyphicon glyphicon-pencil"></span></a>
+  <a href={{candidate_resume.0}}><span class="glyphicon glyphicon-download-alt"></span></a>
+  <br>
+  Recruiter: {{candidate_recruiter}}
+
+
+	<div class="container-fluid">
+    <div class="col-md-6">
+      {%for field in candidate_fields %}
+        <div class="row">
+          <div class="col-md-3 candidate_field_title"> {{field.0}} </div>
+          <div class="col-md-3 candidate_field_row" >
+              <div class='candidate_field_value' id={{field.2}}>
+                {{field.1}}
+              </div>
+          </div>
+        </div>
+  		{% endfor %}
+
+    </div>
+    <div class="col-md-5 candidate_field_title">
+      writeup:
+    </div>
+    <div class="col-md-5 candidate_field_value" id='writeup'>
+        {{candidate_writeup}}
+    </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+	<form  action="" method="POST">
+		<table class="table table-condensed table-striped">
+			{% csrf_token %}
+			<tr>
+				{{interview_add_form.interview_type}}
+				Date: <input type="text" id="datepicker" name='date'>
+				Time: <input type="text" id="timepicker" name='time'>
+							<script src="/static/ats/js/jquery.timepicker.min.js"></script>
+				<input type=submit name='add_interview'>
+			</tr>
+		</table>
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+					<th>Company</th>
+					<th>Job Title</th>
+          <th>  </th>
+					<th> Stage </th>
+				</tr>
+			</thead>
+			<tbody>
+				{%for job in candidate_jobs %}
+					<tr>
+						<td>{{	job.company  }}</td>
+						<td>
+							{{  job.title  }}
+						</td>
+            <td>
+              <input type="checkbox" name="job_id" value={{job.id}}>
+            </td>
+						<td>
+              <table class="table table-condensed ">
+  						  {% for interview in job.interviews %}
+                  <tr>
+      							<td> {{ interview.get_interview_type_display }} </td>
+      							<td class=> {{ interview.date_time }}<td>
+                    <td>
+                      <div class='remove_glyph'>
+        							  <form action="" method="POST">
+        									{% csrf_token %}
+        									<button type=submit show="on-hover" class="btn btn-default btn-xs" value={{ interview.pk }} name='delete_interview'>
+        										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        									</button>
+        								</form>
+                      </div>
+                    </td>
+                  <tr>
+                {% endfor %}
+              </table>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</form>
+
+{% endblock %}

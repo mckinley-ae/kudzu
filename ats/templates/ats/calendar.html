@@ -1,0 +1,7 @@
+{% extends "ats/__base.html" %}
+
+{% block no_panel_content %}
+    {% include 'ats/__base_calendar.html' with events=events%}
+    <br>
+    <br>
+{% endblock %}
