@@ -25,7 +25,7 @@ SECRET_KEY = '=mr&_u3u6wtdfq)=6)&jn!gq3wd-q6)cl$(#chfrwo4bz^wzb1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['104.131.184.18:8000', 'www.kudzu.cc', 'kudzu.cc']
+ALLOWED_HOSTS = ['104.131.184.18', 'www.kudzu.cc', 'kudzu.cc']
 
 
 # Application definition
