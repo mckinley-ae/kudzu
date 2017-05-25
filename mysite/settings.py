@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 	#'ats'
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
 	'django.middleware.locale.LocaleMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
