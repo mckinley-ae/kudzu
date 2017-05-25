@@ -1,7 +1,7 @@
 {% extends "ats/__base.html" %}
 
-{% block content_title %}
-	{{summary}}
+{% block page_title %}
+  {{page_title}}
 {% endblock %}
 
 {% block content %}
@@ -9,6 +9,7 @@
 	<span class="label label-default tag-label">{{tag}}</span>
 {% endfor %}
 	<div name='job_details col-md-12'>
+		<a href='edit'><span class="glyphicon glyphicon-pencil"></span></a>
 		<table class="table table-hover">
 			{% for field in job_details %}
 				<tr>

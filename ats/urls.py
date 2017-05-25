@@ -21,8 +21,11 @@ urlpatterns = [
 	#ex: /new_candidate/
 	url(r'^new_candidate/', views.new_candidate, name='new_candidate'),
 
-	#ex: /search/{search_params}
+	#ex: /search/
 	url(r'^search/$', views.search, name='search'),
+
+	#ex: /search/results/
+	url(r'^search/results/$', views.search_results, name='search_results'),
 
 	#ex: /new_job/
 	url(r'^new_job/', views.new_job, name='new_job'),
@@ -39,9 +42,15 @@ urlpatterns = [
 	#ex: /job/5
 	url(r'^job/(?P<job_pk>[0-9]+)/$', views.job_detail, name='job_detail'),
 
+	#ex: /job/5/edit
+	url(r'^job/(?P<job_pk>[0-9]+)/edit/$', views.edit_job, name='edit_job'),
+
 	#ex: /calendar
 	url(r'^calendar/$', views.calendar, name='calendar'),
 
 	#ex: /download/resume/5
-	url(r'^download/(?P<type>[A-z]+)/(?P<pk>[0-9]+)/$', views.download, name='download')
+	url(r'^download/(?P<type>[A-z]+)/(?P<pk>[0-9]+)/$', views.download, name='download'),
+
+	#ex: /upload_resume
+	url(r'^upload_resume/$', views.upload_resume, name='upload_resume')
 ]

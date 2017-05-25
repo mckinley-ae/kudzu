@@ -37,7 +37,6 @@ class JobSearchForm(forms.Form):
 			self.fields[tag_field_pair[0]] = tag_field_pair[1]
 
 class NewCandidateForm(ModelForm):
-
 	class Meta:
 		model = Candidate
 		exclude = ['pub_date', 'jobs', 'change_log', 'tags']
@@ -50,7 +49,6 @@ class NewCandidateForm(ModelForm):
 
 
 class NewJobForm(ModelForm):
-
 	class Meta:
 		model = Job
 		exclude = ['pub_date', 'currently_open', 'tags']
@@ -71,8 +69,19 @@ class SubmitCandidateForm(ModelForm):
 class InterviewAddForm(ModelForm):
 	class Meta:
 		model = Interview
-		job = forms.ModelMultipleChoiceField(queryset=Job.objects.all())
+		job = forms.ModelMultipleChoiceField(queryset=Job.objects.all(), required=True)
 		fields = ['interview_type', 'job' ]
+
+class UploadResumeForm(forms.Form):
+	resume = forms.FileField(required=True)
+
+	class Meta:
+		fields = '__all__'
+
+class LoginForm(forms.Form):
+	username = forms.CharField(required=True)
+	password = forms.CharField(required=True, widget=forms.PasswordInput())
+
 
 
 

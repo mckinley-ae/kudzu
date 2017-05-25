@@ -2,6 +2,10 @@
 
 {% extends "ats/__base.html" %}
 
+{% block page_title %}
+  {{page_tltle}}
+{% endblock %}
+
 {% block content %}
 	<!-- SHOW unscheduled list AKA interviews who have none on interview date-->
 	{% if unscheduled_list %}

@@ -24,7 +24,7 @@
 
 </style>
 
-<div class="navbar navbar-inverse navbar-fixed-left">
+<div class="navbar navbar-inverse navbar-fixed-left" style="position: fixed; z-index: 1;">
   <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span></a>
   <ul class="nav navbar-nav">
    <li><a href='/'><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
@@ -34,8 +34,8 @@
    <li><a href='/calendar'><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a></a></li>
    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
      <ul class="dropdown-menu" role="menu">
-      <li><a href="#">Sub Menu4</a></li>
-      <li><a href="#">Sub Menu5</a></li>
+      <li><a href="/upload_resume">Upload Resume</a></li>
+      <li><a href="/logout">Logout {{user}}</a></li>`
      </ul>
    </li>
   </ul>

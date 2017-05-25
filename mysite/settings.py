@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+	'nltk',
+	'PyPDF2',
 	'datetimewidget', #https://github.com/asaglimbeni/django-datetime-widget
 	'ats.apps.AtsConfig',
     'django.contrib.admin',
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles'
+	#'ats'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +58,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'mysite.urls'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+LOGIN_URL = '/login/'
 
 #for production:
 #from django.conf import settings
